@@ -40,7 +40,6 @@
       user-select: none;
     }
 
-    /* ปิดสีน้ำเงินของ iOS Safari ทุกจุด */
     a, a:visited, a:hover, a:active,
     a[href^="tel"],
     .art-text-box,
@@ -69,7 +68,6 @@
       z-index: 2;
     }
 
-    /* รูปลอย q9yitc.png และ m7b7kg.png */
     .floating-layer {
       position: fixed;
       inset: 0;
@@ -79,13 +77,13 @@
     }
     .float-item {
       position: absolute;
-      bottom: -80px;
-      width: 40px;
-      height: 40px;
+      bottom: -60px;
+      width: 25px;
+      height: 25px;
       object-fit: contain;
       animation: floatMotion 12s linear infinite;
       opacity: 0.85;
-      filter: drop-shadow(0 4px 10px rgba(240, 197, 212, 0.4));
+      filter: drop-shadow(0 3px 8px rgba(240, 197, 212, 0.45));
     }
     @keyframes floatMotion {
       0% { transform: translateY(0) rotate(0deg); opacity: 0; }
@@ -94,7 +92,6 @@
       100% { transform: translateY(-115vh) rotate(360deg); opacity: 0; }
     }
 
-    /* กล่องแจ้งเตือนการสั่งซื้อล่าสุด */
     .live-ticker-box {
       background: rgba(255, 255, 255, 0.9);
       border: 1.5px solid var(--c-border);
@@ -129,7 +126,6 @@
       user-select: none;
     }
 
-    /* กล่องแถบด้านบน */
     .top-header {
       display: flex;
       align-items: center;
@@ -193,7 +189,6 @@
       font-weight: 700;
     }
 
-    /* เมนู Drawer ด้านข้าง */
     .side-drawer {
       position: fixed;
       top: 0;
@@ -293,7 +288,6 @@
       border-color: transparent;
     }
 
-    /* แท็บคอนเทนต์ */
     .tab-view { display: none; }
     .tab-view.active { display: block; animation: tabFade 0.25s ease; }
     @keyframes tabFade {
@@ -311,7 +305,6 @@
       margin-bottom: 14px;
     }
 
-    /* หน้า 1: โปรไฟล์ร้าน */
     .banner-wrap {
       width: 100%;
       height: 145px;
@@ -372,7 +365,6 @@
     }
     .line-oa-btn:active { transform: scale(0.97); }
 
-    /* หน้า 2: ตารางกล่องแอพพรีเมียม */
     .apps-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -403,7 +395,6 @@
       padding: 10px 6px 12px;
     }
 
-    /* Modal เลือกแพ็กเกจ */
     .app-modal {
       position: fixed;
       inset: 0;
@@ -443,7 +434,6 @@
       background: var(--c-pink-soft);
     }
 
-    /* หน้า 3: payment ♡ */
     .bank-image-wrap {
       width: 100%;
       border-radius: 18px;
@@ -466,7 +456,7 @@
       background: #ffffff;
       border: 1.5px solid var(--c-border);
       border-radius: 16px;
-      padding: 11px 16px;
+      padding: 10px 14px;
       margin-bottom: 8px;
       cursor: pointer;
       font-size: 13.5px;
@@ -474,6 +464,13 @@
       color: var(--text-dark) !important;
     }
     .copy-pill-btn:active { background: var(--c-pink-soft); }
+    .copy-gif-icon {
+      width: 26px;
+      height: 26px;
+      object-fit: contain;
+      display: block;
+      flex-shrink: 0;
+    }
 
     .voucher-box-card {
       background: #ffffff;
@@ -511,7 +508,6 @@
     }
     .slip-uploader-box:active { background: var(--c-pink-soft); }
 
-    /* หน้า 4: ประวัติสั่งซื้อ */
     .order-history-card {
       background: #ffffff;
       border: 1.5px solid var(--c-border);
@@ -606,7 +602,7 @@
   <!-- เพลงประกอบพื้นหลัง ILLIT 'Swingin' Magic' -->
   <audio id="bgMusic" loop preload="auto" src="https://file.garden/asG8Gt-rqWIpi3II/%5BTHAISUB%5D%20ILLIT%20'Swingin'%20Magic'%F0%9F%94%AE%20by%20%23chlyzsub.mp3"></audio>
 
-  <!-- รูปลอย q9yitc.png และ m7b7kg.png -->
+  <!-- รูปลอย -->
   <div class="floating-layer" id="floatContainer"></div>
 
   <!-- แถบเมนูด้านข้าง (Drawer) -->
@@ -636,7 +632,7 @@
 
   <div class="container">
 
-    <!-- แถบฟีดผู้ใช้ล่าสุดซื้ออะไร (เบลอชื่อยูส) -->
+    <!-- แถบฟีดผู้ใช้ล่าสุดซื้ออะไร -->
     <div class="live-ticker-box" id="liveTickerBox">
       <div class="live-ticker-dot"></div>
       <div class="live-ticker-text" id="liveTickerText">
@@ -668,9 +664,8 @@
           <img id="profileImg" src="https://files.catbox.moe/th0fnd.jpeg" alt="Profile">
         </div>
         <h1 class="shop-name-title" id="shopNameText">jaysaei ♡</h1>
-        <div class="shop-bio-box" id="shopBioText">
-กดเว็บได้ 24 hr แอพมีปัญหาทักไลน์ @492wsqki แจ้งรายละเอียดให้ครบ แล้วรอเค้าตอบนะคะ งดเร่ง
-        </div>
+        <div class="shop-bio-box" id="shopBioText">กดเว็บได้ 24 hr แอพมีปัญหาทักไลน์ @492wsqki
+แจ้งรายละเอียดให้ครบ แล้วรอเค้าตอบนะคะ งดเร่ง</div>
         <a href="https://lin.ee/8BUfyX6" target="_blank" class="line-oa-btn" id="lineOaLink">
           แจ้งปัญหาตรงนี้ ♡
         </a>
@@ -699,17 +694,17 @@
           <img src="https://files.catbox.moe/btmvtn.png" alt="Payment Details">
         </div>
 
-        <!-- กล่องคัดลอกเลขบัญชี และ วอลเล็ต (ไม่เป็นสีน้ำเงิน) -->
+        <!-- กล่องคัดลอกเลขบัญชี และ วอลเล็ต (แสดง GIF ที่กำหนดจากหลังบ้าน) -->
         <div class="copy-pill-btn" onclick="copyText('1672755324', 'คัดลอกเลขบัญชี K-Bank แล้ว ♡')">
           <span style="font-weight:600;">k-bank : 1672755324</span>
-          <span style="color:var(--c-deep) !important; -webkit-text-fill-color:var(--c-deep) !important; font-size:12px; font-weight:700;">คัดลอก ♡</span>
+          <img src="https://files.catbox.moe/cbvs4i.gif" class="copy-gif-icon copy-icon-img" alt="icon">
         </div>
         <div class="copy-pill-btn" onclick="copyText('0985124035', 'คัดลอกเบอร์ wallet แล้ว ♡')">
           <span style="font-weight:600;">wallet : 0985124035</span>
-          <span style="color:var(--c-deep) !important; -webkit-text-fill-color:var(--c-deep) !important; font-size:12px; font-weight:700;">คัดลอก ♡</span>
+          <img src="https://files.catbox.moe/cbvs4i.gif" class="copy-gif-icon copy-icon-img" alt="icon">
         </div>
 
-        <!-- กล่องเติมเงินผ่านซอง TrueMoney อัตโนมัติ (เข้าเบอร์ 0985124035) -->
+        <!-- กล่องเติมเงินผ่านซอง TrueMoney อัตโนมัติ -->
         <div class="voucher-box-card">
           <div style="font-size:14px; font-weight:700; color:var(--c-deep); text-align:center; margin-bottom:4px;">
             🧧 เติมเงินด้วยซองของขวัญ TrueMoney (อัตโนมัติ) ♡
@@ -734,10 +729,10 @@
  พ݂ร้อม݁โน้ต݂    𓈒 ּ༷♡ׅ ཾ𐄙
        ┊    𓈒  ขอ݂บคุณ݁ค่ะ݂ 𓂂</div>
 
-        <!-- กล่องคัดลอกคำโน้ตสลิป (คัดลอกเฉพาะข้อความด้านใน) -->
+        <!-- กล่องคัดลอกคำโน้ตสลิป -->
         <div class="copy-pill-btn" onclick="copyText('ซื้อขายกับเจเจ @492wsqki', 'คัดลอกคำโน้ตสลิปเรียบร้อยแล้ว ♡')">
           <span style="font-weight:600;">ซื้อขายกับเจเจ @492wsqki</span>
-          <span style="color:var(--c-deep) !important; -webkit-text-fill-color:var(--c-deep) !important; font-size:12px; font-weight:700;">คัดลอก ♡</span>
+          <img src="https://files.catbox.moe/cbvs4i.gif" class="copy-gif-icon copy-icon-img" alt="icon">
         </div>
 
         <!-- แนบสลิปโอนเงิน (EasySlip API Key ใหม่) -->
@@ -841,7 +836,6 @@
     if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // แยกคอลเลกชันใหม่สำหรับร้าน jaysaei 100%
     const DB_SITE = "jaysaei_site";
     const DB_APPS = "jaysaei_apps";
     const DB_ORDERS = "jaysaei_orders";
@@ -849,9 +843,7 @@
     const DB_SLIPS = "jaysaei_slips";
     const DB_VOUCHERS = "jaysaei_vouchers";
 
-    // EasySlip API Key ใหม่
     const EASYSLIP_API_KEY = "e08b8c8f-2e57-4552-b264-4be513432237";
-    // เบอร์ TrueMoney Wallet รับซองอัตโนมัติ
     const SHOP_WALLET_PHONE = "0985124035";
 
     let currentUser = null;
@@ -861,6 +853,12 @@
     let selectedPlanIndex = -1;
     let userUnsub = null;
     let orderUnsub = null;
+
+    // รูปลอยเริ่มต้น
+    let activeFloatImgs = [
+      'https://files.catbox.moe/m7b7kg.png',
+      'https://files.catbox.moe/36d5wl.png'
+    ];
 
     const music = document.getElementById('bgMusic');
     function toggleMusic() {
@@ -1075,7 +1073,7 @@
 
     checkStoredUser();
 
-    // ดึงข้อมูลร้าน
+    // ดึงข้อมูลร้านและรูปลอย + GIF คัดลอก
     db.collection(DB_SITE).doc("config").onSnapshot(doc => {
       if (doc.exists) {
         const d = doc.data();
@@ -1085,6 +1083,23 @@
         if (d.profileImg) document.getElementById('profileImg').src = d.profileImg;
         if (d.lineOaUrl) document.getElementById('lineOaLink').href = d.lineOaUrl;
         if (d.musicUrl && music.src !== d.musicUrl) music.src = d.musicUrl;
+
+        // อัปเดตรูป GIF คัดลอก
+        if (d.copyGifUrl) {
+          document.querySelectorAll('.copy-icon-img').forEach(img => {
+            img.src = d.copyGifUrl;
+          });
+        }
+
+        // อัปเดตรูปลอย 2 อัน
+        if (d.floatImg1 || d.floatImg2) {
+          activeFloatImgs = [];
+          if (d.floatImg1) activeFloatImgs.push(d.floatImg1);
+          if (d.floatImg2) activeFloatImgs.push(d.floatImg2);
+          if (activeFloatImgs.length === 0) {
+            activeFloatImgs = ['https://files.catbox.moe/m7b7kg.png', 'https://files.catbox.moe/36d5wl.png'];
+          }
+        }
       }
     });
 
@@ -1161,7 +1176,6 @@
       return `${d} ${m} ${y} เวลา ${hh}:${mm}:${ss} น.`;
     }
 
-    // สั่งซื้อแอพ
     async function buySelectedPlan() {
       if (!currentUser) {
         alert('กรุณาเข้าสู่ระบบก่อนสั่งซื้อนะคะ ♡');
@@ -1242,7 +1256,6 @@
       }
     }
 
-    // ประวัติการสั่งซื้อ
     function loadOrderHistory(username) {
       if (orderUnsub) orderUnsub();
       
@@ -1294,7 +1307,6 @@
       });
     }
 
-    // ฟีดประวัติการซื้อล่าสุดแบบ Real-time พร้อมเบลอชื่อผู้ใช้
     db.collection(DB_ORDERS).orderBy("createdAt", "desc").limit(1).onSnapshot(snap => {
       if (!snap.empty) {
         const lastOrder = snap.docs[0].data();
@@ -1335,7 +1347,6 @@
       return null;
     }
 
-    // ระบบรับซอง TrueMoney เข้า 0985124035 อัตโนมัติ
     async function handleRedeemVoucher() {
       if (!currentUser) {
         alert('กรุณาเข้าสู่ระบบก่อนเติมเงินด้วยซองนะคะ ♡');
@@ -1421,7 +1432,6 @@
       return 'slip_' + Math.abs(hash);
     }
 
-    // ตรวจสอบสลิปผ่าน EasySlip API Key ใหม่
     async function handleSlipUpload(event) {
       if (!currentUser) {
         alert('กรุณาเข้าสู่ระบบก่อนแนบสลิปเติมเงินนะคะ ♡');
@@ -1505,15 +1515,12 @@
       navigator.clipboard.writeText(str).then(() => alert(msg));
     }
 
-    // รูปลอยสลับ q9yitc.png และ m7b7kg.png
+    // สุ่มสร้างรูปลอยจากรายการที่ดึงมาจากหลังบ้าน
     const floatBox = document.getElementById('floatContainer');
-    const floatImages = [
-      'https://files.catbox.moe/q9yitc.png',
-      'https://files.catbox.moe/m7b7kg.png'
-    ];
     setInterval(() => {
+      if (!activeFloatImgs || activeFloatImgs.length === 0) return;
       const el = document.createElement('img');
-      el.src = floatImages[Math.floor(Math.random() * floatImages.length)];
+      el.src = activeFloatImgs[Math.floor(Math.random() * activeFloatImgs.length)];
       el.className = 'float-item';
       el.style.left = (Math.random() * 90) + 'vw';
       el.style.animationDuration = (8 + Math.random() * 6) + 's';
