@@ -86,7 +86,6 @@
 <body>
 
 <div class="container">
-  <!-- ล็อกอินแอดมิน: ใช้ placeholder เป็น email และ password ไม่แสดงข้อมูลจริง -->
   <div class="card" id="loginBox">
     <div class="title">Admin Dashboard ♡ jaysaei</div>
     <div class="field-group">
@@ -100,7 +99,6 @@
     <button type="button" class="btn" onclick="handleLogin()">เข้าสู่ระบบแอดมิน ♡</button>
   </div>
 
-  <!-- แผงแดชบอร์ด -->
   <div id="dashboardBox" class="hidden">
     <div class="nav-tabs">
       <button type="button" class="tab-btn active" onclick="switchAdminTab('general')">1. ร้านค้า ♡</button>
@@ -110,10 +108,10 @@
       <button type="button" class="tab-btn" onclick="switchAdminTab('account')">5. บัญชีแอดมิน ♡</button>
     </div>
 
-    <!-- แถบ 1: ข้อมูลหน้าร้าน -->
+    <!-- แถบ 1: ข้อมูลหน้าร้าน & รูปตกแต่ง/GIF -->
     <div class="tab-content active" id="tab-general">
       <div class="card">
-        <div class="title">ข้อมูลโปรไฟล์ร้าน ♡</div>
+        <div class="title">ข้อมูลโปรไฟล์ร้าน & รูปตกแต่ง ♡</div>
         <div class="field-group">
           <label class="field-label">ชื่อร้าน</label>
           <input type="text" id="cfgShopName" class="input-box">
@@ -138,7 +136,26 @@
           <label class="field-label">URL เพลง (.mp3)</label>
           <input type="text" id="cfgMusic" class="input-box">
         </div>
-        <button type="button" class="btn" onclick="saveGeneralConfig()">บันทึกข้อมูลหน้าร้าน ♡</button>
+
+        <div style="border-top: 1.5px dashed var(--c-border); margin: 16px 0; padding-top: 12px;">
+          <div style="font-weight:700; color:var(--c-deep); font-size:14px; margin-bottom:8px;">
+            ✨ จัดการรูปตกแต่ง & GIF ปุ่มคัดลอก ♡
+          </div>
+          <div class="field-group">
+            <label class="field-label">URL รูป GIF ในปุ่มคัดลอก (ขวาของปุ่ม)</label>
+            <input type="text" id="cfgCopyGif" class="input-box" placeholder="https://files.catbox.moe/cbvs4i.gif">
+          </div>
+          <div class="field-group">
+            <label class="field-label">URL รูปลอยชิ้นที่ 1 (PNG)</label>
+            <input type="text" id="cfgFloatImg1" class="input-box" placeholder="https://files.catbox.moe/m7b7kg.png">
+          </div>
+          <div class="field-group">
+            <label class="field-label">URL รูปลอยชิ้นที่ 2 (PNG)</label>
+            <input type="text" id="cfgFloatImg2" class="input-box" placeholder="https://files.catbox.moe/36d5wl.png">
+          </div>
+        </div>
+
+        <button type="button" class="btn" onclick="saveGeneralConfig()">บันทึกข้อมูลหน้าร้าน & รูปภาพ ♡</button>
       </div>
     </div>
 
@@ -234,7 +251,6 @@
   const DB_APPS = "jaysaei_apps";
   const DB_USERS = "jaysaei_users";
 
-  // บัญชีล็อกอินแอดมินตามบรีฟ
   let adminUser = "jarethfeby";
   let adminEmail = "qrenuiypl@gmail.com";
   let adminPass = "jarethmineone";
@@ -296,11 +312,16 @@
     db.collection(DB_SITE).doc("config").get().then(doc => {
       const d = doc.exists ? doc.data() : {};
       document.getElementById('cfgShopName').value = d.shopName || "jaysaei ♡";
-      document.getElementById('cfgShopBio').value = d.shopBio || `กดเว็บได้ 24 hr แอพมีปัญหาทักไลน์ @492wsqki แจ้งรายละเอียดให้ครบ แล้วรอเค้าตอบนะคะ งดเร่ง`;
+      document.getElementById('cfgShopBio').value = d.shopBio || `กดเว็บได้ 24 hr แอพมีปัญหาทักไลน์ @492wsqki\nแจ้งรายละเอียดให้ครบ แล้วรอเค้าตอบนะคะ งดเร่ง`;
       document.getElementById('cfgBanner').value = d.bannerImg || "https://files.catbox.moe/ut4jq6.gif";
       document.getElementById('cfgProfile').value = d.profileImg || "https://files.catbox.moe/th0fnd.jpeg";
       document.getElementById('cfgLineOa').value = d.lineOaUrl || "https://lin.ee/8BUfyX6";
       document.getElementById('cfgMusic').value = d.musicUrl || "https://file.garden/asG8Gt-rqWIpi3II/%5BTHAISUB%5D%20ILLIT%20'Swingin'%20Magic'%F0%9F%94%AE%20by%20%23chlyzsub.mp3";
+      
+      // ดึงรูป GIF คัดลอก และ รูปลอย 2 ชิ้น
+      document.getElementById('cfgCopyGif').value = d.copyGifUrl || "https://files.catbox.moe/cbvs4i.gif";
+      document.getElementById('cfgFloatImg1').value = d.floatImg1 || "https://files.catbox.moe/m7b7kg.png";
+      document.getElementById('cfgFloatImg2').value = d.floatImg2 || "https://files.catbox.moe/36d5wl.png";
     });
 
     document.getElementById('newAdminUser').value = adminUser;
@@ -521,10 +542,13 @@
       profileImg: document.getElementById('cfgProfile').value.trim(),
       lineOaUrl: document.getElementById('cfgLineOa').value.trim(),
       musicUrl: document.getElementById('cfgMusic').value.trim(),
+      copyGifUrl: document.getElementById('cfgCopyGif').value.trim(),
+      floatImg1: document.getElementById('cfgFloatImg1').value.trim(),
+      floatImg2: document.getElementById('cfgFloatImg2').value.trim(),
       updatedAt: firebase.firestore.FieldValue.serverTimestamp()
     };
     await db.collection(DB_SITE).doc("config").set(payload, { merge: true });
-    alert("บันทึกข้อมูลหน้าร้านเรียบร้อยแล้วค่ะ ♡");
+    alert("บันทึกข้อมูลหน้าร้าน & รูปภาพเรียบร้อยแล้วค่ะ ♡");
   }
 
   async function saveAllApps() {
