@@ -654,7 +654,7 @@
       <button type="button" class="music-trigger-btn" onclick="toggleMusic()">🎵</button>
     </div>
 
-    <!-- 1. แท็บ home (โปรไฟล์ร้าน) -->
+    <!-- 1. แท็บ home (โปรไฟล์ร้าน + กล่องแอพพรีเมียมสั่งซื้อ) -->
     <div class="tab-view active" id="tab-profile">
       <div class="glass-card">
         <div class="banner-wrap">
@@ -669,6 +669,14 @@
         <a href="https://lin.ee/8BUfyX6" target="_blank" class="line-oa-btn" id="lineOaLink">
           แจ้งปัญหาตรงนี้ ♡
         </a>
+      </div>
+
+      <!-- เพิ่มกล่องแอพพรีเมียมให้แสดงและกดสั่งซื้อได้ในหน้า Home -->
+      <div class="glass-card" style="padding-bottom:20px;">
+        <h2 style="font-size:15.5px; font-weight:700; color:var(--c-deep); text-align:center; margin-bottom:14px;">
+          app premium ♡
+        </h2>
+        <div class="apps-grid" id="appsGridHome"></div>
       </div>
     </div>
 
@@ -694,7 +702,7 @@
           <img src="https://files.catbox.moe/btmvtn.png" alt="Payment Details">
         </div>
 
-        <!-- กล่องคัดลอกเลขบัญชี และ วอลเล็ต (แสดง GIF ที่กำหนดจากหลังบ้าน) -->
+        <!-- กล่องคัดลอกเลขบัญชี และ วอลเล็ต -->
         <div class="copy-pill-btn" onclick="copyText('1672755324', 'คัดลอกเลขบัญชี K-Bank แล้ว ♡')">
           <span style="font-weight:600;">k-bank : 1672755324</span>
           <img src="https://files.catbox.moe/cbvs4i.gif" class="copy-gif-icon copy-icon-img" alt="icon">
@@ -854,7 +862,6 @@
     let userUnsub = null;
     let orderUnsub = null;
 
-    // รูปลอยเริ่มต้น
     let activeFloatImgs = [
       'https://files.catbox.moe/m7b7kg.png',
       'https://files.catbox.moe/36d5wl.png'
@@ -1073,7 +1080,7 @@
 
     checkStoredUser();
 
-    // ดึงข้อมูลร้านและรูปลอย + GIF คัดลอก
+    // ดึงข้อมูลร้านและรูปตกแต่ง
     db.collection(DB_SITE).doc("config").onSnapshot(doc => {
       if (doc.exists) {
         const d = doc.data();
@@ -1084,14 +1091,12 @@
         if (d.lineOaUrl) document.getElementById('lineOaLink').href = d.lineOaUrl;
         if (d.musicUrl && music.src !== d.musicUrl) music.src = d.musicUrl;
 
-        // อัปเดตรูป GIF คัดลอก
         if (d.copyGifUrl) {
           document.querySelectorAll('.copy-icon-img').forEach(img => {
             img.src = d.copyGifUrl;
           });
         }
 
-        // อัปเดตรูปลอย 2 อัน
         if (d.floatImg1 || d.floatImg2) {
           activeFloatImgs = [];
           if (d.floatImg1) activeFloatImgs.push(d.floatImg1);
@@ -1112,10 +1117,16 @@
       renderAppsGrid();
     });
 
+    // แสดงผลกล่องแอพทั้งในหน้า Home และหน้า App Premium
     function renderAppsGrid() {
       const grid = document.getElementById('appsGrid');
+      const gridHome = document.getElementById('appsGridHome');
+      
       grid.innerHTML = '';
+      if (gridHome) gridHome.innerHTML = '';
+
       appsDataList.forEach(item => {
+        // การ์ดสำหรับแท็บ App Premium
         const card = document.createElement('div');
         card.className = 'app-box-card';
         card.onclick = () => openAppModal(item);
@@ -1124,6 +1135,18 @@
           <div class="app-box-name">${item.name}</div>
         `;
         grid.appendChild(card);
+
+        // การ์ดสำหรับหน้า Home
+        if (gridHome) {
+          const cardHome = document.createElement('div');
+          cardHome.className = 'app-box-card';
+          cardHome.onclick = () => openAppModal(item);
+          cardHome.innerHTML = `
+            <img src="${item.thumb || 'https://files.catbox.moe/kszmeo.jpeg'}" class="app-box-thumb" alt="${item.name}">
+            <div class="app-box-name">${item.name}</div>
+          `;
+          gridHome.appendChild(cardHome);
+        }
       });
     }
 
@@ -1515,7 +1538,6 @@
       navigator.clipboard.writeText(str).then(() => alert(msg));
     }
 
-    // สุ่มสร้างรูปลอยจากรายการที่ดึงมาจากหลังบ้าน
     const floatBox = document.getElementById('floatContainer');
     setInterval(() => {
       if (!activeFloatImgs || activeFloatImgs.length === 0) return;
